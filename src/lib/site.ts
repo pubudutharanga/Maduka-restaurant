@@ -1,5 +1,23 @@
-export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://madukarestaurant.lk";
+const resolveSiteUrl = (): string => {
+  const customUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  if (customUrl) {
+    return customUrl.replace(/\/$/, "");
+  }
+
+  const vercelProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  if (vercelProductionUrl) {
+    return `https://${vercelProductionUrl}`;
+  }
+
+  const vercelUrl = process.env.VERCEL_URL;
+  if (vercelUrl) {
+    return `https://${vercelUrl}`;
+  }
+
+  return "https://maduka-restaurant.vercel.app";
+};
+
+export const siteUrl = resolveSiteUrl();
 
 export const siteName = "Maduka Restaurant & Rooms";
 
