@@ -134,7 +134,7 @@ export const property: Property = {
     {
       question: "How much does a room cost?",
       answer:
-        "The most recently recorded sample rate for the Double Room with Sea View is LKR 9,468 per night. Rates vary with dates and season, and the private-bathroom room is quoted on inquiry. Message the family for a live price—there are no booking-platform fees when you book direct.",
+        "Rates are set by Maduka and confirmed directly for your dates and season. Message the family on WhatsApp for a live quote—there are no booking-platform fees when you book direct.",
     },
     {
       question: "Is the restaurant open to non-residents?",

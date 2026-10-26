@@ -29,7 +29,7 @@ import { property } from "@/data/property";
 import { roomAmenityStrip, rooms } from "@/data/rooms";
 import { getRoomWhatsAppUrl } from "@/services/api";
 import type { AmenityIcon, Room } from "@/types";
-import { cn, formatLkr } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 const amenityIcons: Record<AmenityIcon, LucideIcon> = {
   beach: TreePalm,
@@ -306,44 +306,23 @@ export function RoomsSection() {
                     })}
                   </ul>
 
-                  <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
-                    {room.priceFrom !== null ? (
-                      <div>
-                        <p className="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-coastal/65">
-                          Sample rate from
-                        </p>
-                        <p className="mt-1 flex items-baseline gap-1.5">
-                          <span className="font-display text-[1.9rem] leading-none text-ocean">
-                            {formatLkr(room.priceFrom)}
-                          </span>
-                          <span className="text-xs text-coastal">/ night</span>
-                        </p>
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-coastal/65">
-                          Rate
-                        </p>
-                        <p className="mt-1 font-display text-[1.9rem] leading-none text-ocean">
-                          On request
-                        </p>
-                      </div>
-                    )}
+                  <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+                    <p className="max-w-[18rem] text-[0.72rem] leading-5 text-coastal/75">
+                      Rates are confirmed directly by Maduka for your dates.
+                    </p>
                     <span className="rounded-full bg-ink/[0.04] px-3 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-coastal">
                       {property.payment.rooms}
                     </span>
                   </div>
-                  <p className="mt-2 text-[0.68rem] leading-5 text-coastal/70">
-                    {room.priceNote}
-                  </p>
 
                   <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
                     <ButtonLink
                       href={`/book?mode=stay&room=${room.id}#booking`}
                       size="md"
-                      className="group flex-1"
+                      className="group w-full sm:flex-1"
+                      aria-label={`Book now — ${room.name}`}
                     >
-                      Check dates &amp; rate
+                      Book now
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                     </ButtonLink>
                     <ButtonLink
@@ -352,7 +331,7 @@ export function RoomsSection() {
                       rel="noreferrer noopener"
                       variant="outline"
                       size="md"
-                      className="flex-1"
+                      className="w-full sm:flex-1"
                     >
                       <WhatsAppIcon className="h-4 w-4" />
                       Ask Maduka

@@ -9,23 +9,20 @@ import { BrandMark } from "@/components/ui/BrandMark";
 import { ButtonLink } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { property, contactLinks } from "@/data/property";
-import { rooms } from "@/data/rooms";
 import { getGeneralWhatsAppUrl } from "@/services/api";
-import { formatLkr } from "@/lib/utils";
 
 const exploreLinks = [
   { href: "/book", label: "Book direct" },
   { href: "/#stay", label: "The rooms" },
   { href: "/#menu", label: "The kitchen" },
   { href: "/#experiences", label: "Experiences" },
+  { href: "/dolphin-tour", label: "Dolphin & whale tour" },
   { href: "/#gallery", label: "Photo album" },
   { href: "/#reviews", label: "Guest reviews" },
   { href: "/#location", label: "Find us" },
 ];
 
 export function Footer() {
-  const seaView = rooms.find((room) => room.priceFrom !== null);
-
   return (
     <footer className="relative overflow-hidden bg-ocean-deep text-sand">
       <div
@@ -179,13 +176,7 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {property.name}. All rights reserved.
           </p>
-          <p className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
-            {seaView?.priceFrom ? (
-              <span>Rooms from {formatLkr(seaView.priceFrom)} / night</span>
-            ) : null}
-            <span className="hidden h-1 w-1 rounded-full bg-sand/30 sm:block" />
-            <span>Made with care on the Kalpitiya coast.</span>
-          </p>
+          <p>Made with care on the Kalpitiya coast.</p>
         </div>
       </div>
     </footer>

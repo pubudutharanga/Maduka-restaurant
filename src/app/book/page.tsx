@@ -28,10 +28,10 @@ export const metadata: Metadata = {
     description: bookDescription,
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Beachfront dining and rooms at Maduka Restaurant & Rooms, Kalpitiya",
+        alt: "Beachfront dining at Maduka Restaurant & Rooms, Kalpitiya",
       },
     ],
   },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Book direct | ${siteName}`,
     description: bookDescription,
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
 };
 

@@ -10,10 +10,6 @@ export const rooms: Room[] = [
     sleeps: 2,
     view: "Sea or garden view",
     bathroom: "Private bathroom",
-    priceFrom: 9468,
-    currency: "LKR",
-    priceNote:
-      "Sample rate for the Sea View room, per night. Rates vary with dates and season.",
     description:
       "A simple timber chalet set directly on the sand, with a private terrace and the ocean a few steps from your door.",
     longDescription:
@@ -45,10 +41,6 @@ export const rooms: Room[] = [
     sleeps: 2,
     view: "Sea or garden view",
     bathroom: "Private open-air bathroom",
-    priceFrom: null,
-    currency: "LKR",
-    priceNote:
-      "Rate confirmed on inquiry. Message the family for live availability.",
     description:
       "A quiet garden room with a queen bed and a private open-air bathroom tucked under the coconut palms.",
     longDescription:

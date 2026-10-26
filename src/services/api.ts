@@ -2,12 +2,13 @@ import { property } from "@/data/property";
 import { rooms } from "@/data/rooms";
 import type {
   DolphinTourBooking,
+  DolphinTourReservation,
   InquiryResult,
   MealPreOrder,
   Room,
   RoomInquiry,
 } from "@/types";
-import { formatDate, formatLkr } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 
 const wait = (ms: number) =>
   new Promise<void>((resolve) => {
@@ -28,12 +29,8 @@ export function getGeneralWhatsAppUrl(message?: string) {
 }
 
 export function getRoomWhatsAppUrl(room: Room) {
-  const rate =
-    room.priceFrom !== null
-      ? ` I saw the sample rate of ${formatLkr(room.priceFrom)} per night on your website.`
-      : "";
   return buildWhatsAppUrl(
-    `Hello Maduka & Nissansala! I would like to check availability for the ${room.name}.${rate} Could you let me know the current rate and available dates? Thank you!`,
+    `Hello Maduka & Nissansala! I would like to check availability for the ${room.name}. Could you let me know the current rate and available dates? Thank you!`,
   );
 }
 
@@ -96,6 +93,24 @@ Could you confirm the meeting point and the local rate? Thank you!`;
 
 export function getDolphinTourUrl(input: DolphinTourBooking) {
   return buildWhatsAppUrl(getDolphinTourMessage(input));
+}
+
+export function getDolphinTourReservationMessage(
+  input: DolphinTourReservation,
+) {
+  return `Hello Maduka! 🐬
+
+I would like to reserve the 7:00 AM Private Dolphin & Whale Watching Tour.
+
+Preferred date: ${formatDate(input.date, "long")}
+Guests: ${input.guests}
+Beachfront breakfast after the tour: ${input.breakfast ? "Yes, please" : "No, thank you"}
+
+Could you confirm availability and the meeting details? Thank you!`;
+}
+
+export function getDolphinTourReservationUrl(input: DolphinTourReservation) {
+  return buildWhatsAppUrl(getDolphinTourReservationMessage(input));
 }
 
 function createReference(prefix: string) {

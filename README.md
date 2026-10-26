@@ -2,7 +2,7 @@
 
 The Phase 1 marketing site for **Maduka Restaurant & Rooms**—a family-run beachfront restaurant and two-room hideaway on the sands of Ilandaiyadi, Kalpitiya, Sri Lanka.
 
-Built with Next.js App Router, TypeScript, Tailwind CSS v4, Framer Motion and Lucide icons. All copy, prices, reviews, policies and photographs come from the property's own knowledge base and guest archives.
+Built with Next.js App Router, TypeScript, Tailwind CSS v4, Framer Motion and Lucide icons. All copy, reviews, policies and photographs come from the property's own knowledge base and guest archives.
 
 ## Getting started
 
@@ -95,7 +95,7 @@ For Phase 2, replace the mock resolvers with calls to `/api/inquiries`, `/api/me
 ## Content and photography
 
 - Property facts, policies, FAQs and contact details: `src/data/property.ts`
-- Sample room rate (LKR 9,468 per night, Sea View) and room details: `src/data/rooms.ts`
+- Room details and direct-booking policy: `src/data/rooms.ts`
 - Menu and pre-order dishes: `src/data/menu.ts`
 - Reviews and scores: `src/data/reviews.ts`
 - Local photography: `public/images/restaurant/`, `public/images/guests/`, `public/images/brand/`

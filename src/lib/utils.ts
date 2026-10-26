@@ -5,14 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatLkr(value: number) {
-  return new Intl.NumberFormat("en-LK", {
-    style: "currency",
-    currency: "LKR",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
 function parseLocalDate(value: string) {
   if (!value) return null;
   const parsed = new Date(`${value}T12:00:00`);

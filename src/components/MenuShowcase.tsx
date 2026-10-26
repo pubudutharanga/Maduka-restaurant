@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUpRight,
+  ChevronDown,
   Clock,
   Coffee,
   Fish,
@@ -16,6 +17,7 @@ import {
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { KitchenJournal } from "@/components/KitchenJournal";
+import { buttonClasses } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { kitchenWhatsAppMessage } from "@/data/kitchen";
@@ -25,6 +27,9 @@ import type { MenuCategoryId, MenuTag } from "@/types";
 import { cn } from "@/lib/utils";
 
 type Filter = MenuCategoryId | "all";
+
+const INITIAL_VISIBLE_ITEMS = 6;
+const LOAD_MORE_ITEMS = 6;
 
 const categoryIcons = {
   catch: Fish,
@@ -68,6 +73,7 @@ const kitchenWhatsAppUrl = buildWhatsAppUrl(kitchenWhatsAppMessage);
 
 export function MenuShowcase() {
   const [filter, setFilter] = useState<Filter>("all");
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_ITEMS);
 
   const filteredItems = useMemo(
     () =>
@@ -76,6 +82,17 @@ export function MenuShowcase() {
         : menuItems.filter((item) => item.category === filter),
     [filter],
   );
+  const visibleItems = filteredItems.slice(0, visibleCount);
+  const hasMore = visibleItems.length < filteredItems.length;
+
+  const handleFilterChange = (nextFilter: Filter) => {
+    setFilter(nextFilter);
+    setVisibleCount(INITIAL_VISIBLE_ITEMS);
+  };
+
+  const handleLoadMore = () => {
+    setVisibleCount((current) => current + LOAD_MORE_ITEMS);
+  };
 
   const counts = useMemo(() => {
     return menuCategories.reduce<Record<string, number>>(
@@ -138,7 +155,7 @@ export function MenuShowcase() {
           <div className="hide-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
             <button
               type="button"
-              onClick={() => setFilter("all")}
+              onClick={() => handleFilterChange("all")}
               aria-pressed={filter === "all"}
               className={cn(
                 "shrink-0 rounded-full border px-4 py-2.5 text-[0.72rem] font-semibold transition-all duration-300",
@@ -154,7 +171,7 @@ export function MenuShowcase() {
               <button
                 key={category.id}
                 type="button"
-                onClick={() => setFilter(category.id)}
+                onClick={() => handleFilterChange(category.id)}
                 aria-pressed={filter === category.id}
                 className={cn(
                   "shrink-0 rounded-full border px-4 py-2.5 text-[0.72rem] font-semibold transition-all duration-300",
@@ -171,11 +188,12 @@ export function MenuShowcase() {
         </Reveal>
 
         <motion.div
+          id="menu-grid"
           layout
           className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           <AnimatePresence mode="popLayout">
-            {filteredItems.map((item, index) => {
+            {visibleItems.map((item, index) => {
               const Icon = categoryIcons[item.category];
               return (
                 <motion.article
@@ -277,6 +295,35 @@ export function MenuShowcase() {
           </AnimatePresence>
         </motion.div>
 
+        {filteredItems.length > INITIAL_VISIBLE_ITEMS ? (
+          <div className="mt-8 flex flex-col items-center gap-2.5">
+            <p
+              role="status"
+              aria-live="polite"
+              className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-coastal/65"
+            >
+              {hasMore
+                ? `Showing ${visibleItems.length} of ${filteredItems.length} dishes`
+                : `All ${filteredItems.length} dishes shown`}
+            </p>
+            {hasMore ? (
+              <button
+                type="button"
+                onClick={handleLoadMore}
+                aria-controls="menu-grid"
+                className={buttonClasses({
+                  variant: "outline",
+                  size: "md",
+                  className: "min-w-40 bg-ivory/80",
+                })}
+              >
+                Load more
+                <ChevronDown className="h-4 w-4" />
+              </button>
+            ) : null}
+          </div>
+        ) : null}
+
         <Reveal className="mt-10">
           <div className="flex flex-col gap-5 rounded-2xl border border-ink/10 bg-sand px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
             <p className="flex items-start gap-2.5 text-[0.8rem] leading-6 text-coastal">
@@ -285,8 +332,8 @@ export function MenuShowcase() {
                 <strong className="font-semibold text-ink">
                   Dinner is cooked from scratch from 2:00 PM.
                 </strong>{" "}
-                Pre-order your curries or crab by WhatsApp—or through the
-                booking form—and the table will be ready when the sun goes down.
+                Pre-order your curries or crab by WhatsApp or through the
+                Booking form.
               </span>
             </p>
             <div className="flex shrink-0 flex-wrap items-center gap-2.5">

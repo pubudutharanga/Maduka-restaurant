@@ -48,6 +48,8 @@ const heroSlides = [
 
 const SLIDE_DURATION = 6500;
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const heroButtonClassName =
+  "group h-12 px-5 text-[0.82rem] sm:px-5 lg:h-[3.4rem] lg:px-7 lg:text-sm";
 
 function subscribeToReducedMotion(onChange: () => void) {
   const media = window.matchMedia(REDUCED_MOTION_QUERY);
@@ -131,8 +133,8 @@ export function Hero() {
       />
 
       <div className="container-page relative z-20 flex min-h-[100svh] flex-col justify-end pb-40 pt-32 sm:pb-44 lg:pb-52">
-        <div className="max-w-[58rem] text-center sm:text-left">
-          <p className="eyebrow flex items-center justify-center gap-3 text-turmeric sm:justify-start">
+        <div className="max-w-[58rem] text-center lg:text-left">
+          <p className="eyebrow flex items-center justify-center gap-3 text-turmeric lg:justify-start">
             <span
               className="hidden h-px w-9 bg-current opacity-70 sm:block"
               aria-hidden="true"
@@ -140,39 +142,35 @@ export function Hero() {
             Kalpitiya · Sri Lanka
           </p>
 
-          <h1 className="mx-auto mt-6 max-w-[55rem] text-[clamp(2.35rem,11vw,2.9rem)] leading-[0.98] tracking-[-0.035em] text-shadow-soft sm:mx-0 sm:text-[4rem] lg:text-[5.1rem] xl:text-[5.7rem]">
+          <h1 className="mx-auto mt-6 max-w-[55rem] text-[clamp(2.35rem,11vw,2.9rem)] leading-[0.98] tracking-[-0.035em] text-shadow-soft sm:text-[4rem] lg:mx-0 lg:text-[5.1rem] xl:text-[5.7rem]">
             A little corner of{" "}
             <em className="font-normal italic text-turmeric">paradise</em> on
             the sands of Kalpitiya.
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-[0.98rem] leading-7 text-sand/80 sm:mx-0 sm:text-lg sm:leading-8">
-            Two timber chalets on a private strip of beach, Nissansala&apos;s
-            scratch-cooked Sri Lankan kitchen, and spinner dolphins just beyond
-            the reef. Hosted by the family who has always lived here.
-          </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:justify-start">
             <ButtonLink
               href="/book?mode=stay#booking"
               size="lg"
-              className="group"
+              className={heroButtonClassName}
             >
               Reserve a beach chalet
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 lg:h-4 lg:w-4" />
             </ButtonLink>
             <ButtonLink
               href="/book?mode=table#booking"
               variant="outlineLight"
               size="lg"
-              className="group"
+              className={heroButtonClassName}
             >
-              <UtensilsCrossed className="h-4 w-4" />
+              <UtensilsCrossed className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
               Pre-order fresh curry &amp; seafood
             </ButtonLink>
           </div>
 
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[0.68rem] font-medium uppercase tracking-[0.12em] text-sand/55 sm:justify-start sm:text-[0.7rem]">
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[0.68rem] font-medium uppercase tracking-[0.12em] text-sand/55 lg:justify-start sm:text-[0.7rem]">
             <span className="inline-flex items-center gap-1.5">
               <Check className="h-3.5 w-3.5 text-turmeric" />
               Direct with the family

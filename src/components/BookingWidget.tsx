@@ -45,7 +45,6 @@ import type {
 import {
   cn,
   formatDate,
-  formatLkr,
   isFutureDate,
   nightsBetween,
   todayISO,
@@ -1007,24 +1006,14 @@ export function BookingWidget({
                     </h3>
                     <div className="mt-5 rounded-2xl border border-sand/15 bg-white/[0.06] p-4">
                       <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-sand/50">
+                        Selected room
+                      </p>
+                      <p className="mt-2 font-display text-[1.35rem] leading-tight text-sand">
                         {selectedRoom.name}
                       </p>
-                      {selectedRoom.priceFrom !== null ? (
-                        <p className="mt-2 font-display text-[1.9rem] leading-none text-sand">
-                          {formatLkr(selectedRoom.priceFrom)}
-                          <span className="ml-1.5 font-sans text-[0.68rem] font-medium text-sand/55">
-                            / night
-                          </span>
-                        </p>
-                      ) : (
-                        <p className="mt-2 font-display text-[1.55rem] leading-none text-sand">
-                          Rate on request
-                        </p>
-                      )}
                       <p className="mt-2 text-[0.65rem] leading-5 text-sand/55">
-                        {selectedRoom.priceFrom !== null
-                          ? "Sample direct rate. Confirm your dates for a live quote."
-                          : "Message the family for the current rate and availability."}
+                        Maduka will confirm availability and your rate directly
+                        for your dates.
                       </p>
                     </div>
                     <ul className="mt-4 space-y-2.5 text-[0.76rem] text-sand/70">

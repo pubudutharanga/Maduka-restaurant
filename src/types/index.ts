@@ -30,9 +30,6 @@ export interface Room {
   sleeps: number;
   view: string;
   bathroom: string;
-  priceFrom: number | null;
-  currency: "LKR";
-  priceNote: string;
   description: string;
   longDescription: string;
   amenities: Amenity[];
@@ -103,6 +100,25 @@ export type ExperienceIcon =
   | "kite"
   | "reef"
   | "safari";
+
+export interface ExperienceItem {
+  id: string;
+  slug?: string;
+  title: string;
+  subtitle: string;
+  badge: string;
+  hasDedicatedPage: boolean;
+  dedicatedPageUrl?: string;
+  departureOrSchedule: string;
+  location: string;
+  shortDescription: string;
+  fullDescriptions: string[];
+  highlights: string[];
+  hashtags: string[];
+  whatsappPrefillText: string;
+  imageFolder: string;
+  images: string[];
+}
 
 export interface TourExperience {
   id: string;
@@ -291,6 +307,12 @@ export interface DolphinTourBooking {
   departure: "sunrise" | "later-morning";
   guests: number;
   notes?: string;
+}
+
+export interface DolphinTourReservation {
+  date: string;
+  guests: number;
+  breakfast: boolean;
 }
 
 export interface BookingInquiry {

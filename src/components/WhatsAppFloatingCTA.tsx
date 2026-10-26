@@ -22,9 +22,11 @@ function getServerHeroVisibilitySnapshot() {
 
 export function WhatsAppFloatingCTA() {
   const pathname = usePathname();
+  const hiddenRoute =
+    pathname.startsWith("/book") || pathname.startsWith("/dolphin-tour");
   const subscribe = useCallback(
     (onChange: () => void) => {
-      if (pathname.startsWith("/book")) return () => {};
+      if (hiddenRoute) return () => {};
 
       const hero = document.getElementById("top");
       if (!hero) return () => {};
@@ -44,7 +46,7 @@ export function WhatsAppFloatingCTA() {
 
       return () => observer.disconnect();
     },
-    [pathname],
+    [hiddenRoute],
   );
   const visible = useSyncExternalStore(
     subscribe,
@@ -52,7 +54,7 @@ export function WhatsAppFloatingCTA() {
     getServerHeroVisibilitySnapshot,
   );
 
-  if (pathname.startsWith("/book")) return null;
+  if (hiddenRoute) return null;
 
   return (
     <a
