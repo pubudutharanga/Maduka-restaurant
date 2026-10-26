@@ -44,7 +44,7 @@ import { experiencesData } from "@/data/experiences";
 import { property } from "@/data/property";
 import { buildWhatsAppUrl } from "@/services/api";
 import { initials } from "@/lib/utils";
-import { siteName } from "@/lib/site";
+import { siteName, siteUrl } from "@/lib/site";
 
 const pageDescription =
   "A private 7:00 AM dolphin & whale watching tour from Ilanthadiya beach, Kalpitiya with Maduka and his fisherman father. One boat, one family, no crowds.";
@@ -58,16 +58,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_LK",
-    url: "/dolphin-tour",
+    url: `${siteUrl}/dolphin-tour`,
     siteName,
     title: `Private Dolphin & Whale Watching Tour | ${siteName}`,
     description: pageDescription,
     images: [
       {
-        url: dolphinTourFeatureImage.src,
-        width: dolphinTourFeatureImage.width,
-        height: dolphinTourFeatureImage.height,
-        alt: dolphinTourFeatureImage.alt,
+        url: `${siteUrl}${dolphinTourHeroImage.src}`,
+        width: dolphinTourHeroImage.width,
+        height: dolphinTourHeroImage.height,
+        alt: dolphinTourHeroImage.alt,
       },
     ],
   },
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Private Dolphin & Whale Watching Tour | ${siteName}`,
     description: pageDescription,
-    images: [dolphinTourFeatureImage.src],
+    images: [`${siteUrl}${dolphinTourHeroImage.src}`],
   },
 };
 
